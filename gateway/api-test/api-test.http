@@ -1,0 +1,16 @@
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+    "name": "John",
+    "email": "john@gmail.com"
+}
+
+### 
+POST http://localhost:8000/newsletter
+Content-Type: application/json
+
+{
+    "message":"Olá newsletter!",
+    "password":"admin"
+}

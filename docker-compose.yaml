@@ -1,0 +1,83 @@
+version: '3'
+
+networks:
+  db_internal:
+    external: false
+    internal: true
+  gateway_internal:
+    external: false
+    internal: true
+  gateway_external:
+    external: false
+    internal: true
+  frontend_external:
+    external: false
+    internal: false
+
+services:
+  db:
+    image: mysql:8.1
+    container_name: mysql_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=senhaverdadeiramenteforte
+      - MYSQL_DATABASE=newsletter
+    networks:
+      - db_internal
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  prisma-migration:
+    container_name: prisma-migration
+    build: 
+      context: ./newsletter-app
+      dockerfile: "@migration.dockerfile"
+    environment:
+      - DATABASE_URL=mysql://root:senhaverdadeiramenteforte@mysql_db:3306/newsletter
+    networks:
+      - db_internal
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  newsletter-app:
+    container_name: newsletter-app
+    build: 
+      context: ./newsletter-app
+      dockerfile: "@production.dockerfile"
+    depends_on:
+      - prisma-migration
+    environment:
+      - DATABASE_URL=mysql://root:senhaverdadeiramenteforte@mysql_db:3306/newsletter
+    networks:
+      - db_internal
+      - gateway_internal
+
+  gateway:
+    container_name: gateway
+    build:
+      context: ./gateway
+    depends_on:
+      - newsletter-app
+    environment:
+      - NEWSLETTER_APP_URL=http://newsletter-app:3000
+      - ADM_PASSWORD=doutorwaka
+      - SERVER_PORT=8000
+      - FRONTEND_URL=http://front-end:3000
+    networks:
+      - gateway_internal
+      - gateway_external
+
+  front-end:
+    container_name: front-end
+    build:
+      context: ./frontend
+    depends_on:
+      - gateway
+    ports:
+      - 3000:3000
+    networks:
+      - gateway_external
+      - frontend_external

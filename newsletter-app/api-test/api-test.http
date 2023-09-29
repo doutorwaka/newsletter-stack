@@ -1,0 +1,15 @@
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name":"Doutorwaka",
+    "email":"doutorwaka@gmail.com"
+}
+
+###
+POST http://localhost:3000/newsletter
+Content-Type: application/json
+
+{
+    "message":"Olá pessoal da newsletter!"
+}
