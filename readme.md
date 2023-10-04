@@ -1,6 +1,6 @@
 # 📰 Newsletter Stack
 
-Esta aplicação foi construída em uma [vídeo aula] no canal do [YouTube](https://www.youtube.com/@doutorwaka). A aplicação é dividida em três partes principais:
+Esta aplicação foi construída em uma [vídeo aula](https://youtu.be/yPn6C-DYPeg) no canal do [YouTube](https://www.youtube.com/@doutorwaka). A aplicação é dividida em três partes principais:
   1. ***Frontend*** (Next)
   2. ***API Gateway*** (Node/Express)
   3. ***App*** (Nest/Node)
