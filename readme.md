@@ -6,7 +6,9 @@ Esta aplicação é dividida em três partes principais:
   3. App (Nest/Node)
 
 Para executar a aplicação, basta clonar este repositório e executar (necessário ter o [Docker](https://www.youtube.com/watch?v=EhuHJEppU40) instalado):
-```docker-compose up -d --build```
+```
+docker-compose up -d --build
+```
 
 ## Casos de uso
 
@@ -17,6 +19,7 @@ A aplicação é referente a uma `newsletter` fictícia onde ela deverá abordar
 ## Fluxo de negócios
 
 O fluxo da aplicação seguirá a imagem abaixo:
+
 ![newsletter-stack-schema](https://github.com/doutorwaka/newsletter-stack/assets/107580593/75a1d8a6-4e0c-4598-9c83-b0d68c45d5f4)
 
 Note que a ***API Gateway*** será o portão de entrada para o ***backend*** da aplicação. Ela deverá interceptar todos os ***requests*** do ***frontend***. Caso seja cadastro de novo usuário, ela simplesmente irá repassar a requisição para frente. Caso seja um envio de mensagem para os usuários da ***newsletter***, ela irá verificar se a senha informada pelo administrador é válida.
