@@ -1,9 +1,9 @@
 # 📰 Newsletter Stack
 
-Esta aplicação é dividida em três partes principais:
-  1. Frontend (Next)
-  2. API Gateway (Node/Express)
-  3. App (Nest/Node)
+Esta aplicação foi construída em uma vídeo-aula ministrada no endereço [https://youtu.be/yPn6C-DYPeg](https://youtu.be/yPn6C-DYPeg). A aplicação é dividida em três partes principais:
+  1. ***Frontend*** (Next)
+  2. ***API Gateway*** (Node/Express)
+  3. ***App*** (Nest/Node)
 
 Para executar a aplicação, basta clonar este repositório e executar (necessário ter o [Docker](https://www.youtube.com/watch?v=EhuHJEppU40) instalado):
 ```
